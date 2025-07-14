@@ -79,27 +79,3 @@ class Store:
                    and isinstance(item[1], int) for item in shopping_list):
             raise TypeError("Shopping list must contain tuples of (Product, quantity).")
         return sum(product.buy(quantity) for product, quantity in shopping_list)
-
-
-def main():
-    """Main function to run the Best Buy store application."""
-
-    product_list = [Product("MacBook Air M2", price=1450, quantity=100),
-                    Product("Bose QuietComfort Earbuds", price=250, quantity=0),
-                    Product("Google Pixel 7", price=500, quantity=250),
-                ]
-    try:
-        best_buy = Store(product_list)
-        product = best_buy.get_all_products()
-        print(best_buy.get_total_quantity())
-        print(best_buy.order([(product[0], 1), (product[1], 2)]))
-        print(best_buy.get_total_quantity())
-    except products.InventoryError as inventory_error:
-        print(f"Error: {inventory_error}")
-    except ValueError as inventory_error:
-        print(f"Value Error: {inventory_error}")
-    except TypeError as inventory_error:
-        print(f"Type Error: {inventory_error}")
-
-if __name__ == "__main__":
-    main()
