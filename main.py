@@ -1,7 +1,7 @@
 
+import sys
 from products import Product, InventoryError
 import store
-import sys
 
 
 def pause() -> None:
@@ -71,13 +71,14 @@ def start(store: store.Store) -> None:
             total_price = 0.0
             print()
             while True:
-                product_choice = input("Select the product number of the item that you want (0 if none): ")
+                product_choice = input("Select the product number of the " \
+                "item that you want (0 if none): ")
                 if product_choice.isdigit():
-                    product_index = int(product_choice)
-                    if product_index == 0:
+                    product_choice = int(product_choice)
+                    if product_choice == 0:
                         break
-                    elif 1 <= product_index <= len(products):
-                        selected_product: Product = products[product_index - 1]
+                    elif 1 <= product_choice <= len(products):
+                        selected_product: Product = products[product_choice - 1]
                         quantity_input = input("Enter the quantity: ")
                         try:
                             quantity = int(quantity_input)
