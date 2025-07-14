@@ -60,8 +60,8 @@ class Store:
         return active_products
 
 
-
-    def order(self, shopping_list: list[tuple[Product, int]]) -> float:
+    @staticmethod
+    def order(shopping_list: list[tuple[Product, int]]) -> float:
         """Process an order from the shopping list.
         Args:
             shopping_list (list): A list of tuples where each tuple
