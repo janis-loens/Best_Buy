@@ -46,7 +46,7 @@ class Product:
     
     def buy(self, quantity: int) -> float:
         if self.quantity < quantity:
-            raise InventoryError(f"Only {slef.quantity} units are available for purchase.")
+            raise InventoryError(f"{quantity} items requested, but {self.quantity} units of {self.name} are available for purchase.")
         price = quantity * self.price
         self.quantity -= quantity
         return price
