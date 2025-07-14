@@ -1,5 +1,17 @@
+# IDE/Editor settings
 .guides
 .codio
 .settings
 .vscode
-__pycache__
+
+# Byte-compiled / cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment files
+.env
+
+# System files
+.DS_Store
