@@ -1,5 +1,10 @@
 # type: ignore
 class InventoryError(Exception):
+    """Custom exception for inventory-related errors.
+
+    Args:
+        Exception (BaseException): The base exception class.
+    """
     pass
 
 
