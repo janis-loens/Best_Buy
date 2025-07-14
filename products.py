@@ -97,11 +97,11 @@ class Product:
 
         Args:
             None
-            
+
         Returns:
             None
         """
-        print(f"{self.name}, Price($): {self.price}, Quantity: {self.quantity}")
+        return f"{self.name}, Price($): {self.price}, Quantity: {self.quantity}"
 
     
     def buy(self, quantity: int) -> float:
@@ -126,6 +126,8 @@ class Product:
             raise InventoryError(f"{quantity} items requested, but {self.quantity} units of {self.name} are available for purchase.")
         price = quantity * self.price
         self.quantity -= quantity
+        if self.quantity == 0:
+            self.deactivate()
         return price
     
 
