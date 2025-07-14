@@ -28,6 +28,42 @@ def print_products(products: list) -> None:
     for index, product in enumerate(products):
         print(f"{index+1}. {product.show()}")
 
+def handle_order(store_instance, products: list) -> None:
+    total_price = 0.0
+    while True:
+        product_choice = input("Select the product number of the item that you want (0 if none): ")
+        if product_choice.isdigit():
+            product_choice = int(product_choice)
+            if product_choice == 0:
+                break
+            if 1 <= product_choice <= len(products):
+                selected_product: Product = products[product_choice - 1]
+                quantity_input = input("Enter the quantity: ")
+                try:
+                    quantity = int(quantity_input)
+                    if quantity <= 0:
+                        print("Please enter a quantity greater than zero.")
+                        continue
+                except ValueError:
+                    print("Please enter a valid number for quantity.")
+                    continue
+
+                try:
+                    price = store_instance.order([(selected_product, quantity)])
+                    print(f"{quantity} units of {selected_product.name} added to list.")
+                    print()
+                    total_price += price
+                except InventoryError as inventory_error:
+                    print(inventory_error)
+                    pause()
+            else:
+                print("\nThe selected product number is invalid.\n")
+
+        else:
+            print("Please enter a valid product number.")
+    if total_price > 0:
+        print(f"\nOrder made! The total payment is: ${total_price:.2f}")
+
 
 def start(store_instance: store.Store) -> None:
     """Start the Best Buy store application.
@@ -69,43 +105,9 @@ def start(store_instance: store.Store) -> None:
         elif store_menu == "3":
             print()
             print_products(products)
-            total_price = 0.0
             print()
-            while True:
-                product_choice = input("Select the product number of the " \
-                "item that you want (0 if none): ")
-                if product_choice.isdigit():
-                    product_choice = int(product_choice)
-                    if product_choice == 0:
-                        break
-                    elif 1 <= product_choice <= len(products):
-                        selected_product: Product = products[product_choice - 1]
-                        quantity_input = input("Enter the quantity: ")
-                        try:
-                            quantity = int(quantity_input)
-                            if quantity <= 0:
-                                print("Please enter a quantity greater than zero.")
-                                continue
-                        except ValueError:
-                            print("Please enter a valid number for quantity.")
-                            continue
-
-                        try:
-                            price = store_instance.order([(selected_product, quantity)])
-                            print(f"{quantity} units of {selected_product.name} added to list.")
-                            print()
-                            total_price += price
-                        except InventoryError as inventory_error:
-                            print(inventory_error)
-                            pause()
-                    else:
-                        print("\nThe selected product number is invalid.\n")
-
-                else:
-                    print("Please enter a valid product number.")
-            if total_price > 0:
-                print(f"\nOrder made! The total payment is: ${total_price:.2f}")
-                pause()
+            handle_order(store_instance, products)
+            pause()
 
         elif store_menu == "4":
             if input("Are you sure you want to quit? (y/n): ").lower() == "y":
