@@ -4,6 +4,7 @@ class InventoryError(Exception):
 
 
 class Product:
+    """A class representing a product in the store."""
 
     def __init__(self, name: str, price: float, quantity: int):
         """Initialize a Product instance.
@@ -123,7 +124,8 @@ class Product:
             raise InventoryError(f"The product {self.name} is not available for purchase.")
 
         if self.quantity < quantity:
-            raise InventoryError(f"{quantity} items requested, but {self.quantity} units of {self.name} are available for purchase.")
+            raise InventoryError(f"{quantity} items requested, but {self.quantity} "
+                                 f"units of {self.name} are available for purchase.")
         price = quantity * self.price
         self.quantity -= quantity
         if self.quantity == 0:
@@ -132,6 +134,7 @@ class Product:
     
 
 def main():
+    """Run the main application logic for the Best Buy store."""
     bose = Product("Bose QuietComfort Earbuds", price=250, quantity=500)
     mac = Product("MacBook Air M2", price=1450, quantity=100)
 

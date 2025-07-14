@@ -3,6 +3,7 @@ import products
 Product = products.Product
 
 class Store:
+    """A class representing a store that holds products."""
 
     def __init__(self, products: list):
         """Initialize the store with a list of products.
@@ -11,7 +12,7 @@ class Store:
         """
         self.list_of_products = list(products)
 
-    
+
     def add_product(self, product: Product) -> None:
         """Add a product to the store.
         Args:
@@ -63,7 +64,8 @@ class Store:
     def order(self, shopping_list: list[tuple[Product, int]]) -> float:
         """Process an order from the shopping list.
         Args:
-            shopping_list (list): A list of tuples where each tuple contains a Product and the quantity to buy.
+            shopping_list (list): A list of tuples where each tuple
+            contains a Product and the quantity to buy.
         Returns:
             float: The total price of the order.
         Raises:
@@ -71,12 +73,16 @@ class Store:
         """
         if not shopping_list:
             raise ValueError("Shopping list cannot be empty.")
-        if not all(isinstance(item, tuple) and len(item) == 2 and isinstance(item[0], Product) and isinstance(item[1], int) for item in shopping_list):
+        if not all(isinstance(item, tuple)
+                   and len(item) == 2
+                   and isinstance(item[0], Product)
+                   and isinstance(item[1], int) for item in shopping_list):
             raise TypeError("Shopping list must contain tuples of (Product, quantity).")
         return sum(product.buy(quantity) for product, quantity in shopping_list)
 
 
 def main():
+    """Main function to run the Best Buy store application."""
 
     product_list = [Product("MacBook Air M2", price=1450, quantity=100),
                     Product("Bose QuietComfort Earbuds", price=250, quantity=0),
