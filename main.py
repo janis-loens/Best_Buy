@@ -63,7 +63,8 @@ def start(store_instance: store.Store) -> None:
             pause()
         elif store_menu == "2":
             print()
-            print(f"There is a total of {store_instance.get_total_quantity()} products in the store.")
+            print(f"There is a total of {store_instance.get_total_quantity()} "
+                  f"products in the store.")
             pause()
         elif store_menu == "3":
             print()
