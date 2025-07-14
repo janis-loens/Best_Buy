@@ -21,7 +21,7 @@ def print_products(products: list) -> None:
 
     Args:
         products (list): A list of Product objects.
-    
+
     Returns:
         None
     """
@@ -29,22 +29,22 @@ def print_products(products: list) -> None:
         print(f"{index+1}. {product.show()}")
 
 
-def start(store: store.Store) -> None:
+def start(store_instance: store.Store) -> None:
     """Start the Best Buy store application.
     Providing a menu for the user to interact with the store.
 
     Args:
         store (store.Store): The store instance to run the application on.
-    
+
     Returns:
         None
     """
     while True:
         try:
-            products = store.get_all_products()
-        except InventoryError as ie:
+            products = store_instance.get_all_products()
+        except InventoryError as inventory_error:
             print()
-            print(f"{ie}")
+            print(f"{inventory_error}")
             print("Exiting the application.")
             break
         store_menu = input("""
@@ -63,7 +63,7 @@ def start(store: store.Store) -> None:
             pause()
         elif store_menu == "2":
             print()
-            print(f"There is a total of {store.get_total_quantity()} products in the store.")
+            print(f"There is a total of {store_instance.get_total_quantity()} products in the store.")
             pause()
         elif store_menu == "3":
             print()
@@ -90,12 +90,12 @@ def start(store: store.Store) -> None:
                             continue
 
                         try:
-                            price = store.order([(selected_product, quantity)])
+                            price = store_instance.order([(selected_product, quantity)])
                             print(f"{quantity} units of {selected_product.name} added to list.")
                             print()
                             total_price += price
-                        except InventoryError as ie:
-                            print(ie)
+                        except InventoryError as inventory_error:
+                            print(inventory_error)
                             pause()
                     else:
                         print("\nThe selected product number is invalid.\n")

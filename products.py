@@ -37,7 +37,7 @@ class Product:
             int: The quantity of the product.
         """
         return self.quantity
-    
+
 
     def set_quantity(self, quantity: int) -> None:
         """Set the quantity of the product.
@@ -56,7 +56,7 @@ class Product:
         self.quantity = quantity
         if self.quantity == 0:
             self.active = False
-    
+
 
     def is_active(self) -> bool:
         """Check if the product is active.
@@ -68,7 +68,7 @@ class Product:
             bool: True if the product is active, False otherwise.
         """
         return self.active
-    
+
 
     def activate(self) -> None:
         """Activate the product.
@@ -85,8 +85,8 @@ class Product:
     def deactivate(self) -> None:
         """Deactivate the product.
         Args:
-            None    
-        
+            None
+
         Returns:
             None
         """
@@ -104,7 +104,7 @@ class Product:
         """
         return f"{self.name}, Price($): {self.price}, Quantity: {self.quantity}"
 
-    
+
     def buy(self, quantity: int) -> float:
         """Buy a quantity of the product.
 
@@ -131,7 +131,7 @@ class Product:
         if self.quantity == 0:
             self.deactivate()
         return price
-    
+
 
 def main():
     """Run the main application logic for the Best Buy store."""

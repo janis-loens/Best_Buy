@@ -5,12 +5,12 @@ Product = products.Product
 class Store:
     """A class representing a store that holds products."""
 
-    def __init__(self, products: list):
+    def __init__(self, products_list: list):
         """Initialize the store with a list of products.
         Args:
             products (list): A list of Product objects.
         """
-        self.list_of_products = list(products)
+        self.list_of_products = list(products_list)
 
 
     def add_product(self, product: Product) -> None:
@@ -94,12 +94,12 @@ def main():
         print(best_buy.get_total_quantity())
         print(best_buy.order([(product[0], 1), (product[1], 2)]))
         print(best_buy.get_total_quantity())
-    except products.InventoryError as e:
-        print(f"Error: {e}")
-    except ValueError as e:
-        print(f"Value Error: {e}")
-    except TypeError as e:
-        print(f"Type Error: {e}")
+    except products.InventoryError as inventory_error:
+        print(f"Error: {inventory_error}")
+    except ValueError as inventory_error:
+        print(f"Value Error: {inventory_error}")
+    except TypeError as inventory_error:
+        print(f"Type Error: {inventory_error}")
 
 if __name__ == "__main__":
     main()
