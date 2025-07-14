@@ -29,6 +29,11 @@ def print_products(products: list) -> None:
         print(f"{index+1}. {product.show()}")
 
 def handle_order(store_instance, products: list) -> None:
+    """Handle the order process for the store.
+    Args:
+        store_instance (store.Store): The store instance to process the order.
+        products (list): A list of available products in the store.
+    """
     total_price = 0.0
     while True:
         product_choice = input("Select the product number of the item that you want (0 if none): ")
