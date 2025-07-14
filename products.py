@@ -5,7 +5,6 @@ class InventoryError(Exception):
     Args:
         Exception (BaseException): The base exception class.
     """
-    pass
 
 
 class Product:
